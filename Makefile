@@ -8,7 +8,7 @@ OBJ = $(patsubst %.cpp,%.o,$(wildcard *.cpp))
 all: test_all
 test_all : $(OBJ)
 	$(CXX) $(CXXFLAGS) $^ -o $@
-%.o: %.cpp
+%.o: %.cpp test_tool.h
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 .PHONY: clean
