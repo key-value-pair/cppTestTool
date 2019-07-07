@@ -12,7 +12,7 @@
  *   - AssertFail
  *   - RegisterTest
  *****************************************************/
-class AssertFail : public std::exception {
+class AssertFail final: public std::exception {
  public:
   AssertFail(const std::string& msg, const std::string& filename,
 	     const std::string& funcname, int line)
@@ -34,7 +34,7 @@ class AssertFail : public std::exception {
   const int m_line;
 };
 
-class RegisterTest {
+class RegisterTest final {
  public:
   RegisterTest(std::function<void(void)> fun) {
     m_functionList.push_back(fun);
