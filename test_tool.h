@@ -9,8 +9,10 @@
 
 /*****************************************************
  * private interface
+ *   - AssertFail
+ *   - functionList
+ *   - RegisterTest
  *****************************************************/
-
 class AssertFail : public std::exception {
  public:
   AssertFail(const std::string& msg, const std::string& filename,
@@ -76,7 +78,7 @@ void runTest();
 #define AssertTrueDefaultMsg(cond)			\
   AssertTrue(cond, "Expect<true>, Actual<false>")
 
-#define ADD_TEST(fun)				\
+#define ADD_TEST(fun)					\
   static const RegisterTest RegisterTest##fun{fun};
 
 #endif // TEST_TOOL_H
