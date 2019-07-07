@@ -49,6 +49,7 @@ class RegisterTest {
  *   - AssertEqual
  *   - AssertEqualDefaultMsg
  *   - AssertTrue
+ *   - AssertTrueDefaultMsg
  *   - ADD_TEST
  *****************************************************/
 void runTest();
@@ -71,6 +72,9 @@ void runTest();
       throw AssertFail(msg, __FILE__, __FUNCTION__, __LINE__);	\
     }								\
   } while (false)
+
+#define AssertTrueDefaultMsg(cond)			\
+  AssertTrue(cond, "Expect<true>, Actual<false>")
 
 #define ADD_TEST(fun)				\
   static const RegisterTest RegisterTest##fun{fun};
