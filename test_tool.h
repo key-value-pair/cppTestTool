@@ -7,6 +7,10 @@
 #include <functional>
 #include <iostream>
 
+/*****************************************************
+ * private interface
+ *****************************************************/
+
 class AssertFail : public std::exception {
  public:
   AssertFail(const std::string& msg, const std::string& filename,
@@ -38,6 +42,15 @@ class RegisterTest {
   }
 };
 
+
+/*****************************************************
+ * public interface
+ *   - runTest
+ *   - AssertEqual
+ *   - AssertEqualDefaultMsg
+ *   - AssertTrue
+ *   - ADD_TEST
+ *****************************************************/
 void runTest();
 
 #define AssertEqual(actual, expect, msg)			\
@@ -45,14 +58,19 @@ void runTest();
     if (!((actual) == (expect))) {				\
       throw AssertFail(msg, __FILE__, __FUNCTION__, __LINE__);	\
     }								\
-  } while (0)
+  } while (false)
+
+#define AssertEqualDefaultMsg(actual, expect)			\
+  AssertEqual(actual, expect,					\
+	      "Expect<" + std::to_string(expect) + ">, "	\
+	      + "Actual<" + std::to_string(actual) + ">")
 
 #define AssertTrue(cond, msg)					\
   do {								\
     if (!(cond)) {						\
       throw AssertFail(msg, __FILE__, __FUNCTION__, __LINE__);	\
     }								\
-  } while (0)
+  } while (false)
 
 #define ADD_TEST(fun)				\
   static const RegisterTest RegisterTest##fun{fun};

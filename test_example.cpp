@@ -16,7 +16,7 @@ void test_add() {
   b = 0;
   actual = add(a, b);
   expect = 0;
-  AssertEqual(actual, expect, "not equal");
+  AssertEqualDefaultMsg(actual, expect);
 }
 
 void test_plus() {
@@ -27,7 +27,7 @@ void test_plus() {
   b = 1;
   actual = plus(a, b);
   expect = 2;
-  AssertEqual(actual, expect, "not equal");
+  AssertEqualDefaultMsg(actual, expect);
 }
 
 ADD_TEST(test_add);
