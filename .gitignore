@@ -1,0 +1,6 @@
+*.o
+test_all
+*.so
+*.a
+*.log
+*.dat
