@@ -10,7 +10,6 @@
 /*****************************************************
  * private interface
  *   - AssertFail
- *   - functionList
  *   - RegisterTest
  *****************************************************/
 class AssertFail : public std::exception {
@@ -35,13 +34,16 @@ class AssertFail : public std::exception {
   const int m_line;
 };
 
-extern std::vector<std::function<void(void)>> functionList;
-
 class RegisterTest {
  public:
   RegisterTest(std::function<void(void)> fun) {
-    functionList.push_back(fun);
+    m_functionList.push_back(fun);
   }
+  static const std::vector<std::function<void(void)>>& getFunList() {
+    return m_functionList;
+  }
+ private:
+  static std::vector<std::function<void(void)>> m_functionList;
 };
 
 

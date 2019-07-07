@@ -1,12 +1,10 @@
 #include "test_tool.h"
 
-std::vector<std::function<void(void)>> functionList;
-
 void runTest() {
   std::vector<AssertFail> afList;
   std::vector<bool> passList;
   
-  for (auto fun : functionList) {
+  for (auto fun : RegisterTest::getFunList()) {
     try {
       fun();
       passList.push_back(true);
@@ -16,9 +14,9 @@ void runTest() {
     }
   }
 
-  std::cerr << "all: " << functionList.size()
+  std::cerr << "all: " << RegisterTest::getFunList().size()
 	    << ", fail: " << afList.size()
-	    << ", pass: " << (functionList.size()-afList.size())
+	    << ", pass: " << (RegisterTest::getFunList().size()-afList.size())
 	    << std::endl;
 
   for (auto p : passList)
@@ -28,3 +26,5 @@ void runTest() {
   for (auto af : afList)
     std::cerr << af.what() << std::endl;
 }
+
+std::vector<std::function<void(void)>> RegisterTest::m_functionList{};
