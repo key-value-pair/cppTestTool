@@ -14,9 +14,9 @@
  *****************************************************/
 class AssertFail final: public std::exception {
  public:
-  AssertFail(const std::string& msg, const std::string& filename,
-	     const std::string& funcname, int line)
-    : m_msg{msg}, m_filename{filename}, m_funcname{funcname}, m_line{line} {}
+ AssertFail(const std::string& msg, const std::string& filename,
+	    const std::string& funcname, int line)
+   : m_msg{msg}, m_filename{filename}, m_funcname{funcname}, m_line{line} {}
   const char* what() const noexcept {
     static std::string format_msg;
 
@@ -36,7 +36,7 @@ class AssertFail final: public std::exception {
 
 class RegisterTest final {
  public:
-  RegisterTest(std::function<void(void)> fun) {
+  explicit RegisterTest(std::function<void(void)> fun) {
     m_functionList.push_back(fun);
   }
   static const std::vector<std::function<void(void)>>& getFunList() {
