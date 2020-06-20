@@ -1,0 +1,6 @@
+language: c
+compiler:
+  - g++
+script:
+  - make
+  - ./test_all
